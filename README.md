@@ -4,7 +4,7 @@ This project provides Python scripts, for generating MD and XLS documentation ou
 
 ## JSON to MD usage
 
-1. In repo root, execute `python json-to-md.py``
+1. In repo root, execute `python json-to-md.py`
 2. Specify the path of the input json
 3. When prompted, specify a description for each property in provided JSON
 4. The generated MD file is dumped into the `output-md` dir
