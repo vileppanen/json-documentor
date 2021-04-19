@@ -30,6 +30,8 @@ def documentize_prop(key, value, parents=None):
 
 
 def documentize_object(key, data, parents=None):
+    if len(parents) > 3:
+        return []
     prop = get_prop_name(key, parents, True)
     description = input("Describe prop " + prop + ": ")
     lines = [f"`{prop}` | Object | {description} |\n"]
@@ -37,7 +39,7 @@ def documentize_object(key, data, parents=None):
         if isinstance(data[i], dict):
             lines = lines + documentize_object(i, data[i], parents + (i,))
         elif isinstance(data[i], list):
-            print("Array")
+            lines = lines + documentize_array(i, data[i], parents + (i, ))
         else:
             lines = lines + documentize_prop(i, data[i], parents)
     return lines
@@ -46,14 +48,13 @@ def documentize_object(key, data, parents=None):
 def documentize_array(key, data, parents=None):
     prop = get_prop_name(key, parents, True)
     lines = [f"`{prop}` | Array | |\n"]
-    for item in data:
-        if isinstance(item, dict):
-            lines = lines + documentize_object(
-                "ArrayItem", item, parents + ("ArrayItem",)
-            )
-
-        elif isinstance(item, list):
-            print("Array")
-        else:
-            lines = lines + documentize_prop("ArrayItem", item, parents)
+    item = data[0]
+    if isinstance(item, dict):
+        lines = lines + documentize_object(
+            "ArrayItem", item, parents + ("ArrayItem",)
+        )
+    elif isinstance(item, list):
+        lines = [f"`{prop}` | NestedArray | |\n"]
+    else:
+        lines = lines + documentize_prop("ArrayItem", item, parents)
     return lines
