@@ -5,12 +5,12 @@ This project provides Python scripts, for generating MD and XLS documentation ou
 ## Limitations
 
 ### Objects
-- the documentor script does not prompt for additional props that might be missing from the documented json --> the props that are present in the json are the props, that will be documented
+- the documentor script does not prompt for additional props that might be missing from the documented json (the props that are present in the json are the props, that will be documented)
 - complex, nested objects are documented only two level deep
 
 ### Arrays
-- the documentor script assumes every item in an array is of similar type and structure --> it will generate item documentation based on first item in the array
-- the documentor script does not support documenting arrays containing arrays --> it will specify the type as `NestedArray` and skips traversing the values
+- the documentor script assumes every item in an array is of similar type and structure and it generates item documentation based on first item in the array
+- the documentor script does not support documenting arrays containing arrays (the type will be specified as `NestedArray` and traversing values is skipped)
 
 ## JSON to MD usage
 
