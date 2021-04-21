@@ -48,13 +48,15 @@ def documentize_object(key, data, parents=None):
 def documentize_array(key, data, parents=None):
     prop = get_prop_name(key, parents, True)
     lines = [f"`{prop}` | Array | |\n"]
-    item = data[0]
-    if isinstance(item, dict):
-        lines = lines + documentize_object(
-            "ArrayItem", item, parents + ("ArrayItem",)
-        )
-    elif isinstance(item, list):
-        lines = [f"`{prop}` | NestedArray | |\n"]
-    else:
-        lines = lines + documentize_prop("ArrayItem", item, parents)
+
+    if len(data) > 0:
+        item = data[0]
+        if isinstance(item, dict):
+            lines = lines + documentize_object(
+                "ArrayItem", item, parents + ("ArrayItem",)
+            )
+        elif isinstance(item, list):
+            lines = [f"`{prop}` | NestedArray | |\n"]
+        else:
+            lines = lines + documentize_prop("ArrayItem", item, parents)
     return lines
