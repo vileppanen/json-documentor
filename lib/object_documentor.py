@@ -18,14 +18,18 @@ def get_prop_name(key, parents=None, complex_object=False):
 def documentize_prop(key, value, parents=None):
     data_type = None
     prop = get_prop_name(key, parents)
+    example_value = value
     if isinstance(value, str):
         data_type = "String"
     if isinstance(value, int):
         data_type = "Integer"
     if isinstance(value, float):
         data_type = "Float"
+    if isinstance(value, bool):
+        data_type = "Boolean"
+        example_value = "true \| false"
     description = input("Describe prop " + prop + ": ")
-    line = f"`{prop}` | {data_type} | {description} | {str(value)}"
+    line = f"`{prop}` | {data_type} | {description} | {str(example_value)}"
     return [line + "\n"]
 
 
