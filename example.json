@@ -1,4 +1,6 @@
 {
+    "boolTrue": true,
+    "boolFalse": false,
     "num": 1,
     "float": 2.3456,
     "str": "Foo Bar",
@@ -10,7 +12,8 @@
     "objectArr": [
         {
             "id": "item-1",
-            "name": "Item 1"
+            "name": "Item 1",
+            "required": true
         },
         {
             "id": "item-2",
@@ -50,7 +53,8 @@
                 "level3": {
                     "name": "level 3",
                     "level4": {
-                        "name": "level 4"
+                        "name": "level 4",
+                        "required": false
                     }
                 }
             }
